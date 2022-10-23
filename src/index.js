@@ -210,7 +210,7 @@ class Game extends React.Component {
             />
           </div>
           <div className="game-info">
-            <input className="sort" type="submit" value="Sort" onClick={this.handleClickSort} />
+            <input className="sort" type="submit" value={this.state.sort ? "DESC" : "ASC"} onClick={this.handleClickSort} />
             <div>{status}</div>
             <ol>{moves}</ol>
           </div>
@@ -237,7 +237,7 @@ function calculateWinner(squares1chiu, indexRow, indexCol) {
   let [squares, size] = ChuyenMang(squares1chiu, squares1chiu.length);
   const sizeSquares = size;
 
-
+  console.log(squares);
   //Ngang
   const arrayHorizontal = squares[indexRow];
 
@@ -282,7 +282,7 @@ function calculateWinner(squares1chiu, indexRow, indexCol) {
     yLeft--;
   }
 
-  console.log(arrayLeftDiagonal)
+  console.log(arrayHorizontal)
 
   let win = calculateArray(arrayHorizontal);
   if (win) {
@@ -334,6 +334,7 @@ function calculateArray(array) {
       i = k;
       arrayWin = [i];
       k++;
+      count = 1;
     }
 
     if (count === 5) {
@@ -407,8 +408,6 @@ function indexWin2chiu(arrayIndexWin, indexRow, indexCol, method, size) {
       k1++;
     }
   } else {
-    console.log(size);
-
     let i1 = indexRow - 1;
     let k1 = indexCol + 1;
     while (true) {
